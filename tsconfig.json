@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_version": "22.0.0",
+
+  "compilerOptions": {
+    "outDir": "dist", // Out directory for builds
+
+    "lib": ["ES2023"], // Modern ECMAScript features
+    "target": "ES2022", // Aligning lib and target to the same version
+    "module": "Node16", // Use Node.js ESM support
+    "moduleResolution": "node16", // Resolve modules like Node.js (ESM)
+
+    "strict": true, // Strict type checking
+    "esModuleInterop": true, // Compatibility between CommonJS and ESM
+    "skipLibCheck": true, // Faster builds by skipping declaration file checks
+    "forceConsistentCasingInFileNames": true, // Ensure consistent file name casing across imports
+    "resolveJsonModule": true, // Allow importing JSON files
+    "isolatedModules": true, // Treat each file as an isolated module
+
+    "typeRoots": ["./node_modules/@types", "./src/types"] // Custom types
+  },
+  "exclude": ["node_modules", "dist"]
+}
