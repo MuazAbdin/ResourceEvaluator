@@ -6,9 +6,10 @@ import {
 } from "@aws-sdk/client-ssm";
 import DataCollector from "./DataCollector.js";
 import config from "../config.js";
+import _SSMClient from "../clients/ssm.js";
 
 class InstanceDataCollector implements DataCollector<InstanceInformation> {
-  private client = new SSMClient(config);
+  private client = _SSMClient.getClient();
 
   public async getAll(
     input: DescribeInstanceInformationRequest = {}
