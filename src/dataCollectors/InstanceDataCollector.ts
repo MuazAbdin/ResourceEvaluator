@@ -5,8 +5,8 @@ import {
   SSMClient,
 } from "@aws-sdk/client-ssm";
 import DataCollector from "./DataCollector.js";
-import config from "../config.js";
 import _SSMClient from "../clients/ssm.js";
+import Logger from "../utils/logger.js";
 
 class InstanceDataCollector implements DataCollector<InstanceInformation> {
   private client = _SSMClient.getClient();
@@ -14,36 +14,30 @@ class InstanceDataCollector implements DataCollector<InstanceInformation> {
   public async getAll(
     input: DescribeInstanceInformationRequest = {}
   ): Promise<InstanceInformation[]> {
-    try {
-      const output: InstanceInformation[] = [];
-      let nextToken = input?.NextToken;
+    Logger.info("Fetching all managed instances");
 
-      do {
-        const command = new DescribeInstanceInformationCommand(input);
-        const response = await this.client.send(command);
-        output.push(...(response.InstanceInformationList || []));
-        nextToken = response.NextToken;
-      } while (nextToken);
+    const output: InstanceInformation[] = [];
+    let nextToken = input?.NextToken; // to continue to next batch of instances
 
-      return output;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
+    do {
+      const command = new DescribeInstanceInformationCommand(input);
+      const response = await this.client.send(command);
+      output.push(...(response.InstanceInformationList || []));
+      nextToken = response.NextToken;
+    } while (nextToken);
+
+    Logger.info(`Fetched ${output.length} managed instances`);
+    return output;
   }
 
   public async getOne(id: string): Promise<InstanceInformation> {
-    try {
-      const allInstances = await this.getAll({
-        InstanceInformationFilterList: [{ key: "InstanceIds", valueSet: [id] }],
-      });
-      const output = allInstances[0];
-      if (!output) throw Error(`No instace with id: [${id}]`);
-      return output;
-    } catch (error) {
-      console.error(error);
-      return {};
-    }
+    Logger.info(`Fetching instance information for ID: ${id}`);
+    const allInstances = await this.getAll({
+      InstanceInformationFilterList: [{ key: "InstanceIds", valueSet: [id] }],
+    });
+    const output = allInstances[0];
+    if (!output) throw Error(`No instace with id: [${id}]`);
+    return output;
   }
 }
 
