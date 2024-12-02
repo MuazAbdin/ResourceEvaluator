@@ -3,7 +3,8 @@
   "_version": "22.0.0",
 
   "compilerOptions": {
-    "outDir": "dist", // Out directory for builds
+    "outDir": "./dist", // Out directory for builds
+    "rootDir": "./src",
 
     "lib": ["ES2023"], // Modern ECMAScript features
     "target": "ES2022", // Aligning lib and target to the same version
@@ -19,5 +20,6 @@
 
     "typeRoots": ["./node_modules/@types", "./src/types"] // Custom types
   },
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
