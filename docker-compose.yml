@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        AWS_REGION: ${AWS_REGION}
+        AWS_PROFILE: ${AWS_PROFILE}
+    environment:
+      - AWS_REGION=${AWS_REGION}
+      - AWS_PROFILE=${AWS_PROFILE}
+    volumes:
+      - .:/app
+    command: ["corepack", "pnpm", "start"]
