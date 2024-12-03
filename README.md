@@ -61,14 +61,14 @@ I used a slightly different algorithm, so I can return more detalied information
 3. for each `InstanceId` in `nonCompliantInstances` map keys:
    - for each compliance item related to that `InstanceId`, outputh the following: association name, severity level, status. The output should be like this:
    ```sh
-   ╔═════════════════════════════════════════════════════════════════════════════╗
-   ║                       NON-COMPLIANT MANAGED INSTANCES                       ║
-   ╟─────────────────────┬─────────────────────────────┬─────────────┬───────────╢
-   ║ InstanceId          │ Association                 │ Severity    │ Status    ║
-   ╟─────────────────────┬─────────────────────────────┬─────────────┬───────────╢
-   ║ i-1234567890abcdef0 │ AWS-GatherSoftwareInventory │ UNSPECIFIED │ COMPLIANT ║
-   ║ i-1234567890abcdef0 │ AWS-UpdateSSMAgent          │ UNSPECIFIED │ COMPLIANT ║
-   ╚═════════════════════╧═════════════════════════════╧═════════════╧═══════════╝
+   ╔═════════════════════════════════════════════════════════════════════════════════╗
+   ║                       NON-COMPLIANT MANAGED INSTANCES                           ║
+   ╟─────────────────────┬─────────────────────────────┬─────────────┬───────────────╢
+   ║ InstanceId          │ Association                 │ Severity    │ Status        ║
+   ╟─────────────────────┬─────────────────────────────┬─────────────┬───────────────╢
+   ║ i-1234567890abcdef0 │ AWS-GatherSoftwareInventory │ UNSPECIFIED │ NON-COMPLIANT ║
+   ║ i-1234567890abcdef0 │ AWS-UpdateSSMAgent          │ UNSPECIFIED │ NON-COMPLIANT ║
+   ╚═════════════════════╧═════════════════════════════╧═════════════╧═══════════════╝
    ```
 
 #### Project Design
