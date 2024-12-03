@@ -12,7 +12,9 @@ class InstanceDataCollector implements DataCollector<InstanceInformation> {
   private client = _SSMClient.getClient();
 
   public async getAll(
-    input: DescribeInstanceInformationRequest = {}
+    input: DescribeInstanceInformationRequest = {
+      Filters: [{ Key: "ResourceType", Values: ["ManagedInstance"] }],
+    }
   ): Promise<InstanceInformation[]> {
     Logger.info("Fetching all managed instances");
 
@@ -33,7 +35,7 @@ class InstanceDataCollector implements DataCollector<InstanceInformation> {
   public async getOne(id: string): Promise<InstanceInformation> {
     Logger.info(`Fetching instance information for ID: ${id}`);
     const allInstances = await this.getAll({
-      InstanceInformationFilterList: [{ key: "InstanceIds", valueSet: [id] }],
+      Filters: [{ Key: "InstanceIds", Values: [id] }],
     });
     const output = allInstances[0];
     if (!output) throw Error(`No instace with id: [${id}]`);

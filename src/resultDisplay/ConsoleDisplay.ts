@@ -1,10 +1,5 @@
 import { table, TableUserConfig } from "table";
-
-interface Data {
-  title: string;
-  header: Array<string>;
-  items: Array<string[]>;
-}
+import { Data } from "../types/types.js";
 
 export default class ConsoleDisplay {
   public static display(data: Data) {

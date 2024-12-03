@@ -12,7 +12,7 @@ async function run() {
     const associationDataAnalyzer = new AssociationDataAnalyzer();
     const { compliantInstances, nonCompliantInstances } =
       await associationDataAnalyzer.checkCompliance(allInstances);
-    const tableData = associationDataAnalyzer.SummrizeResults(nonCompliantInstances);
+    const tableData = associationDataAnalyzer.summarizeResults(nonCompliantInstances);
 
     ConsoleDisplay.display({
       title: "NON-COMPLIANT MANAGED INSTANCES",

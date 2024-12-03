@@ -31,7 +31,7 @@ class AssociationDataAnalyzer implements DataAnalyzer {
       Logger.info(`Fetching compliance for Instance ID: ${instanceId}`);
       const command = new ListComplianceItemsCommand({
         ResourceIds: [instanceId],
-        ResourceTypes: ["ManagedInstance"],
+        // ResourceTypes: ["ManagedInstance"],
       });
       return this.client.send(command);
     });
@@ -59,7 +59,7 @@ class AssociationDataAnalyzer implements DataAnalyzer {
     return { compliantInstances, nonCompliantInstances };
   }
 
-  public SummrizeResults(result: { [key: string]: ComplianceItem[] }) {
+  public summarizeResults(result: { [key: string]: ComplianceItem[] }) {
     const summary = Object.entries(result).flatMap(([k, v]) => {
       return v.map((item) => {
         return [
