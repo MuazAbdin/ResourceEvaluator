@@ -99,7 +99,7 @@ The application is written in [TypeScript](https://www.typescriptlang.org/).
 
 > **_Prerequisites_**
 > create `.env` file in the root cloned folder, and define two variables:
-> `AWS_REGION` > `AWS_PROFILE`
+> `AWS_REGION` and `AWS_PROFILE`.
 
 1. clone the repository to your local machine.
 2. in terminal run `corepack pnpm build`.
