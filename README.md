@@ -84,8 +84,9 @@ With focus on modularity and extensibility I designed the project as follows:
 
 > **_Note:_**
 > I was thinking to add the following, but because of time constraints, I prefered not to:
-> a factory class, according to the user input (a valid resource type), it outputs an evaluator class which composes all the functionalites from other classes needed to completed the evaluation.
-> for exmple, suppose the user inserts `AWS::SSM::AssociationCompliance`, the factory outputs an `AssociationComplianceEvaluator` class which is an implementation of `ResourceEvaluator` interface, this class composes the classes `InstanceDataCollector` and `AssociationDataAnalyzer` and `ConsoleDisplayer`, and uses their functionalites to display the non compliant instances.
+>
+> - a factory class, according to the user input (a valid resource type), it outputs an evaluator class which composes all the functionalites from other classes needed to completed the evaluation.
+> - for exmple, suppose the user inserts `AWS::SSM::AssociationCompliance`, the factory outputs an `AssociationComplianceEvaluator` class which is an implementation of `ResourceEvaluator` interface, this class composes the classes `InstanceDataCollector` and `AssociationDataAnalyzer` and `ConsoleDisplayer`, and uses their functionalites to display the non compliant instances.
 
 #### Source Code
 
